@@ -7,6 +7,9 @@ public static void main(String[] args) {
 void run(){
 	PongWindow window= new PongWindow();
 	window.run();
+	 
+	ballControl ball= new ballControl();
+	
 	
 	
 	
