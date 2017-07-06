@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 
 public class PongMain {
 public static void main(String[] args) {
@@ -6,6 +7,7 @@ public static void main(String[] args) {
 }
 void run(){
 	PongWindow window= new PongWindow();
+	JOptionPane.showMessageDialog(null, "Use 'a to move right, and 'd' to move left");
 	window.run();
 	 
 	ballControl ball= new ballControl();

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class ballControl {
@@ -8,6 +9,7 @@ public class ballControl {
 
 	public void draw(Graphics g) {
 		g.drawOval(ballX, bally, 25, 25);
+		g.setColor(Color.RED);
 		g.fillOval(ballX, bally, 25, 25);
 	}
 
