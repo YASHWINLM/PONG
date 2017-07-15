@@ -12,12 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class PongWindow extends JPanel implements KeyListener, ActionListener {
-	int frameHeight = 500;
-	int frameWidth = 500;
-	int paddleX = 250;
-	int paddleY = 450;
-	int width = 80;
-	int Height = 10;
+	int frameHeight = 1024;
+	int frameWidth = 1024;
+	int paddleX = 500;
+	int paddleY = 900;
+	int width = 160;
+	int Height = 20;
 	int score = 0;
 	boolean GameEnded = false;
 	ballControl ball = new ballControl();
@@ -35,22 +35,24 @@ public class PongWindow extends JPanel implements KeyListener, ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-	public void reset(){
-		 paddleX = 250;
-		 paddleY = 450;
-		ball.ballX = 50;
-		ball.bally = 50;
-		 ball.speedX = 5;
+
+	public void reset() {
+		paddleX = 500;
+		paddleY = 900;
+		ball.ballX = 100;
+		ball.bally = 100;
+		ball.speedX = 5;
 		ball.speedY = 5;
-}
+	}
+
 	public void paintComponent(Graphics g) {
-		g.drawRect(0, 0, 500, 500);
-		g.fillRect(0, 0, 500, 500);
+		g.drawRect(0, 0, 1024, 1024);
+		g.fillRect(0, 0, 1024, 1024);
 		if (!GameEnded) {
 			ball.draw(g);
 			g.drawRect(paddleX, paddleY, width, Height);
 			g.setColor(Color.BLUE);
-			g.fillRect(paddleX, 450, 80, 10);
+			g.fillRect(paddleX, 900, 160, 20);
 
 		} else {
 			g.setFont(new Font("Arial", 3, 18));
@@ -80,9 +82,9 @@ public class PongWindow extends JPanel implements KeyListener, ActionListener {
 			this.repaint();
 			System.out.println(paddleX);
 		}
-		if(e.getKeyCode()==32 && GameEnded){
+		if (e.getKeyCode() == 32 && GameEnded) {
 			this.reset();
-		GameEnded=false;
+			GameEnded = false;
 		}
 	}
 
@@ -98,13 +100,13 @@ public class PongWindow extends JPanel implements KeyListener, ActionListener {
 		// TODO Auto-generated method stub
 		ball.update();
 		repaint();
-		if (ball.ballX+12.5 > paddleX && ball.ballX+12.5 < paddleX + width && ball.bally+12.5 > paddleY
+		if (ball.ballX > paddleX && ball.ballX < paddleX + width && ball.bally > paddleY
 				&& ball.bally < paddleY + Height) {
 			ball.switchSpeed();
 			score++;
 		}
 
-		if (ball.ballX > 500 && ball.bally > 500) {
+		if (ball.ballX > 1024 && ball.bally > 1024) {
 			JOptionPane.showMessageDialog(null, "GAME OVER!");
 			JOptionPane.showMessageDialog(null, "Press space to restart");
 
@@ -114,7 +116,7 @@ public class PongWindow extends JPanel implements KeyListener, ActionListener {
 		if (ball.bally < 0) {
 			ball.switchSpeedy();
 		}
-		if (ball.ballX > 500 || ball.ballX < 0) {
+		if (ball.ballX > 1024 || ball.ballX < 0) {
 			ball.switchSpeedx();
 		}
 
